@@ -1,3 +1,4 @@
+
 var app = {
 
   //TODO: The current 'handleUsernameClick' function just toggles the class 'friend'
@@ -25,7 +26,7 @@ var app = {
     app.$roomSelect.on('change', app.handleRoomChange);
 
     // Fetch previous messages
-    app.startSpinner();
+    // app.startSpinner();
     app.fetch(false);
 
     // Poll for new messages

@@ -1,4 +1,4 @@
-/* Import node's http module: */
+// Import node's http module:
 var http = require('http');
 var router = require('./request-handler');
 
