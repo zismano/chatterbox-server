@@ -77,7 +77,9 @@ var requestHandler = function(request, response) {
   //
   // Calling .end "flushes" the response's internal buffer, forcing
   // node to actually send all the data over to the client.
-  
+      // headers['Content-Type'] = 'application/json';
+      // response.writeHead(200, headers);
+      // response.end(JSON.stringify(data));
   if (request.method === 'GET') {
     if (!request.url.startsWith('/classes/messages')) {
       response.writeHead(404, headers);
@@ -86,6 +88,7 @@ var requestHandler = function(request, response) {
       headers['Content-Type'] = 'application/json';
       response.writeHead(200, headers);
       response.end(JSON.stringify(data));
+      // console.log(JSON.stringify(data));
     }
   } 
 
@@ -108,7 +111,6 @@ var requestHandler = function(request, response) {
         if (typeof(body) === 'object') {
           body = Buffer.concat(body).toString();
         }
-      
         message = JSON.parse(body);
         message.createdAt = new Date();
         message.objectId = counter;
@@ -118,6 +120,9 @@ var requestHandler = function(request, response) {
     
       response.end(JSON.stringify(message));
     }
+  } else if (request.method === 'OPTIONS') {
+    response.writeHead(200, headers);
+    response.end('no get nor post');
   }
 };
 
